@@ -9,41 +9,64 @@ model a real-life city-center intersection.
 
 ## On the IDM 
 
+When simulating traffic microscopically, what interests us is the relationship of each vehicle with its
+environment, and specifically with the vehicle just in front. In the absence of vehicles, a driver will try to go to the
+highest speed at which it feels comfortable ($$v_0$$), so long as the road or vehicle allows it. It will try to 
+reach that speed by progressively decelerating from the desired maximum acceleration ($$a$$). The speed 
+with which it decelerates depends on the smoothness factor ($$\delta$$), associated inversely with the 
+aggressiveness of the driver. In this regime the driver will accelerate until reaching his desired maximum speed 
+following a curve similar to the logistic (identical at $$\delta = 1$$), as can be deduced from the following 
+differential equation:
+
+$$
+\frac{d}{dt}  v_{n(\textrm{leader})} = a \left( 1 - \left( \frac{v_n}{v_0} \right)^{\delta} \right)
+$$
 
 
+Naturally, when a vehicle encounters traffic it is forced to decelerate. In this other regime, the velocity is 
+less than $$v_0$$, which raised to $$\delta$$ takes the velocity division term to $$0$$. The acceleration then becomes:
+
+$$
+\frac{d}{dt}  v_{n(\textrm{follower})} = a \left( 1 - \left( \frac{s(v_n,\Delta v_n)}{s_n}\right)^{2} \right)
+$$
+
+With $$s(v_n,\Delta v_n)$$ the desired net distance between vehicles, which is a function of both the speed of the 
+leader and the follower and changes at each instant of $$t$$. This translates into a chasing behavior while maintaining 
+distance, since the acceleration is positive if $$s<s_n$$ and negative if $$s>s_n$$. It should be noted that $$s_n$$ is 
+not the position of the nth vehicle, but the distance between vehicles $$n-1$$ and $$n$$, taking into account the 
+length of $$n-1$$.
+
+$$
+\begin{align}
+s(v_n,\Delta v_n) &= s_o+v_nT+\frac{v_n\Delta v_n}{2\sqrt{ab}} \label{s(v)}\\
+s_n & = x_{n-1}-l_{n-1}-x_n
+\end{align}
+$$
+
+The previous equation shows the function $$s$$ explicitly. The first term corresponds to the minimum safety distance 
+($$s_0$$), the second to speed multiplied by reaction time, $$T$$ (That is, the distance traveled from the moment a 
+possible event occurred until the reaction by the driver) and the third and last term is associated with the 
+deceleration at a rate between the desired ($$-|b|$$) and the maximum possible ($$-|a|$$), taking into account the 
+difference in speeds $$\Delta v_n = v_n - v_{n-1}$$.
+
+
+The intelligent driver model arises from combining both terms (taking care not to add the speeds directly but to add 
+the dense traffic coefficient to the model for clear roads).
 $$
 \frac{dv_n}{dt} = a\left(1-\left( \frac{v_n}{v_0} \right)^\delta-\left(\frac{s_o+v_nT+\frac{v_n\Delta v_n}{2\sqrt{ab}}}{x_{n-1}-l_{n-1}-x_n} \right)^2 \right)
 $$
 
-```{=latex}
-\begin{center}
-\begin{tabular}{|c|c||c|c|}
-\hline
-Parameters & &Variables&\\
-\hline
-\hline 
-$a$ & Max acceleration &$x_{n-1}$&Leader's position\\
-\hline
-$\delta$ & Factor de Suavidad&$x_n$&Posición del vehículo\\
-\hline
-$v_0$ & Velocidad deseada&$v_{n}$&Velocidad del vehículo\\
-\hline
-$s_0$ & Distancia mínima de seguridad&$\Delta v_n$&Diferencia de velocidad con el líder\\
-\hline
-$T$ & Tiempo de reacción &&\\
-\hline
-$b$ & Deceleración deseada&&\\
-\hline
-$l_{n-1}$ &Longitud del líder&&\\
-\hline
-\end{tabular}
-\end{center}
-```
-[//]: # (This may be the most platform independent comment
-| Parameter |                  | Variable  |                   |
-|:---------:|:-----------------|:---------:|:------------------|
-|    $a$    | max acceleration | $x_{n-1}$ | leader's position |
-)
+
+| Parameters |                               |  Variables   |                                    |
+|:----------:|:------------------------------|:------------:|:-----------------------------------|
+|    $a$     | Max acceleration              |  $x_{n-1}$   | Leader's position                  |
+|  $\delta$  | Softness factor               |    $x_n$     | Vehicle's position                 |
+|   $v_0$    | Desired velocity              |    $v_n$     | Vehicle's velocity                 |
+|   $s_0$    | Minimum security <br>distance | $\Delta v_n$ | speed differential <br>with leader |
+|    $T$     | Reaction time                 |              |                                    |
+|    $b$     | Desired deceleration          |              |                                    |
+| $l_{n-1}$  | Leader's length               |              |                                    |
+
 
 ## Traffic waves on highways
 If you have a driver's licence chances are you have experienced a so-called traffic wave. A car brakes suddenly on a 
