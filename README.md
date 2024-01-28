@@ -30,11 +30,11 @@ $$
 \frac{d}{dt}  v_{n(\textrm{follower})} = a \left( 1 - \left( \frac{s(v_n,\Delta v_n)}{s_n}\right)^{2} \right)
 $$
 
-With $$s(v_n,\Delta v_n)$$ the desired net distance between vehicles, which is a function of both the speed of the 
-leader and the follower and changes at each instant of $$t$$. This translates into a chasing behavior while maintaining 
-distance, since the acceleration is positive if $$s<s_n$$ and negative if $$s>s_n$$. It should be noted that $$s_n$$ is 
-not the position of the nth vehicle, but the distance between vehicles $$n-1$$ and $$n$$, taking into account the 
-length of $$n-1$$.
+With $s(v_n,\Delta v_n)$ the desired net distance between vehicles, which is a function of both the speed of the 
+leader and the follower and changes at each instant of $t$. This translates into a chasing behavior while maintaining 
+distance, since the acceleration is positive if $s<s_n$ and negative if $s>s_n$. It should be noted that $$s_n$$ is 
+not the position of the nth vehicle, but the distance between vehicles $n-1$ and $n$, taking into account the 
+length of $n-1$.
 
 $$
 \begin{align}
@@ -43,15 +43,16 @@ s_n & = x_{n-1}-l_{n-1}-x_n
 \end{align}
 $$
 
-The previous equation shows the function $$s$$ explicitly. The first term corresponds to the minimum safety distance 
+The previous equation shows the function $s$ explicitly. The first term corresponds to the minimum safety distance 
 ($$s_0$$), the second to speed multiplied by reaction time, $$T$$ (That is, the distance traveled from the moment a 
 possible event occurred until the reaction by the driver) and the third and last term is associated with the 
-deceleration at a rate between the desired ($$-|b|$$) and the maximum possible ($$-|a|$$), taking into account the 
-difference in speeds $$\Delta v_n = v_n - v_{n-1}$$.
+deceleration at a rate between the desired ($-|b|$) and the maximum possible ($-|a|$), taking into account the 
+difference in speeds $\Delta v_n = v_n - v_{n-1}$.
 
 
 The intelligent driver model arises from combining both terms (taking care not to add the speeds directly but to add 
 the dense traffic coefficient to the model for clear roads).
+
 $$
 \frac{dv_n}{dt} = a\left(1-\left( \frac{v_n}{v_0} \right)^\delta-\left(\frac{s_o+v_nT+\frac{v_n\Delta v_n}{2\sqrt{ab}}}{x_{n-1}-l_{n-1}-x_n} \right)^2 \right)
 $$
