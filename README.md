@@ -11,11 +11,11 @@ model a real-life city-center intersection.
 
 When simulating traffic microscopically, what interests us is the relationship of each vehicle with its
 environment, and specifically with the vehicle just in front. In the absence of vehicles, a driver will try to go to the
-highest speed at which it feels comfortable ($$v_0$$), so long as the road or vehicle allows it. It will try to 
-reach that speed by progressively decelerating from the desired maximum acceleration ($$a$$). The speed 
-with which it decelerates depends on the smoothness factor ($$\delta$$), associated inversely with the 
+highest speed at which it feels comfortable ($v_0$), so long as the road or vehicle allows it. It will try to 
+reach that speed by progressively decelerating from the desired maximum acceleration ($a$). The speed 
+with which it decelerates depends on the smoothness factor ($\delta$), associated inversely with the 
 aggressiveness of the driver. In this regime the driver will accelerate until reaching his desired maximum speed 
-following a curve similar to the logistic (identical at $$\delta = 1$$), as can be deduced from the following 
+following a curve similar to the logistic (identical at $\delta = 1$), as can be deduced from the following 
 differential equation:
 
 $$
@@ -24,7 +24,7 @@ $$
 
 
 Naturally, when a vehicle encounters traffic it is forced to decelerate. In this other regime, the velocity is 
-less than $$v_0$$, which raised to $$\delta$$ takes the velocity division term to $$0$$. The acceleration then becomes:
+less than $v_0$, which raised to $\delta$ takes the velocity division term to $0$. The acceleration then becomes:
 
 $$
 \frac{d}{dt}  v_{n(\textrm{follower})} = a \left( 1 - \left( \frac{s(v_n,\Delta v_n)}{s_n}\right)^{2} \right)
@@ -32,7 +32,8 @@ $$
 
 With $s(v_n,\Delta v_n)$ the desired net distance between vehicles, which is a function of both the speed of the 
 leader and the follower and changes at each instant of $t$. This translates into a chasing behavior while maintaining 
-distance, since the acceleration is positive if $s<s_n$ and negative if $s>s_n$. It should be noted that $$s_n$$ is 
+distance, since the acceleration is positive if $s \lt s_n$ and negative if $s \gt s_n$. It should be noted that 
+$$s_n$$ is 
 not the position of the nth vehicle, but the distance between vehicles $n-1$ and $n$, taking into account the 
 length of $n-1$.
 
@@ -44,7 +45,7 @@ s_n & = x_{n-1}-l_{n-1}-x_n
 $$
 
 The previous equation shows the function $s$ explicitly. The first term corresponds to the minimum safety distance 
-($$s_0$$), the second to speed multiplied by reaction time, $$T$$ (That is, the distance traveled from the moment a 
+($s_0$), the second to speed multiplied by reaction time, $T$ (That is, the distance traveled from the moment a 
 possible event occurred until the reaction by the driver) and the third and last term is associated with the 
 deceleration at a rate between the desired ($-|b|$) and the maximum possible ($-|a|$), taking into account the 
 difference in speeds $\Delta v_n = v_n - v_{n-1}$.
