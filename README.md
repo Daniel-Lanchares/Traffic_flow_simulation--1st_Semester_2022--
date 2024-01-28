@@ -33,8 +33,7 @@ $$
 With $s(v_n,\Delta v_n)$ the desired net distance between vehicles, which is a function of both the speed of the 
 leader and the follower and changes at each instant of $t$. This translates into a chasing behavior while maintaining 
 distance, since the acceleration is positive if $s \lt s_n$ and negative if $s \gt s_n$. It should be noted that 
-$$s_n$$ is 
-not the position of the nth vehicle, but the distance between vehicles $n-1$ and $n$, taking into account the 
+$s_n$ is not the position of the nth vehicle, but the distance between vehicles $n-1$ and $n$, taking into account the 
 length of $n-1$.
 
 $$
@@ -58,6 +57,7 @@ $$
 \frac{dv_n}{dt} = a\left(1-\left( \frac{v_n}{v_0} \right)^\delta-\left(\frac{s_o+v_nT+\frac{v_n\Delta v_n}{2\sqrt{ab}}}{x_{n-1}-l_{n-1}-x_n} \right)^2 \right)
 $$
 
+<div align="center">
 
 | Parameters |                               |  Variables   |                                    |
 |:----------:|:------------------------------|:------------:|:-----------------------------------|
@@ -69,6 +69,7 @@ $$
 |    $b$     | Desired deceleration          |              |                                    |
 | $l_{n-1}$  | Leader's length               |              |                                    |
 
+</div>
 
 ## Traffic waves on highways
 If you have a driver's licence chances are you have experienced a so-called traffic wave. A car brakes suddenly on a 
