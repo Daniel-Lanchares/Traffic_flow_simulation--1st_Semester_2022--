@@ -84,9 +84,14 @@ abstract elements of our simulation to actual objects, so we can design their in
 Building upon [this work](https://towardsdatascience.com/simulating-traffic-flow-in-python-ee1eab4dd20f) and 
 exchanging Pygame for Vpython, which is not only 3D but also better suited for physical simulations in general, we 
 can define a stretch of road in which our vehicles will be able to move. We can recover our calculus lessons to 
-implement Bézier curves a series of small straight roads _et voilà!_. Though one ought to be careful with the refresh 
-rate of the renderer or will end up with blinking cars. By adjusting their handles we can create any road we might 
-think of.
+implement Bézier curves as a series of small straight roads _et voilà!_. Though one ought to be careful with the 
+refresh rate of the renderer or will end up with blinking cars. By adjusting their handles we can create any road we 
+might think of.
 
-On the vehicles themselves, we can customize their size, colour and stats (speed, acceleration, deceleration...)
+On the vehicles themselves, we can customize their size, colour and stats (speed, acceleration, deceleration...)... 
+TO BE CONTINUED
+
 ![intersection simulator](https://raw.githubusercontent.com/Daniel-Lanchares/Traffic_flow_simulation--1st_Semester_2022--/main/Pictures_&_Figures/Intersection.png?raw=true)
+
+Check [the SimulacionIDM's README file](SimulacionIDM/README.md) to find more in-depth information about how the 
+simulation is structured and how it works under the hood.
