@@ -74,8 +74,18 @@ $$
 ## Traffic waves on highways
 If you have a driver's licence chances are you have experienced a so-called traffic wave. A car brakes suddenly on a 
 busy highway, causing the one behind to slow down to avoid a collision, which in turn causes the next to slow down a 
-causes a chain reaction... TO BE CONTINUED
+causes a chain reaction.\
+A simpler way of modelling the same phenomenon is to create a circular road. If the length
+($L$) is small enough then the leading cars will reach the tail-end cars before everyone has converged to the 
+optimal speed, generating a traffic wave. The images bellow show both $x(t)$ and $v(t)$ for al 50 vehicles. For 
+better visualization the latter cars' trajectories are also drawn starting from $x_0+L$ as discontinuous lines.\
+In this particular example the only parameter that is varied is the maximum acceleration, which at first order 
+differentiates between a smooth flow and a congested one. Many other parameters were varied on this work.
 
+|                                                                                                        Fluid traffic                                                                                                         |                                                                                                     Congested traffic                                                                                                      |
+|:----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------:|:--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------:|
+|                                       ![](https://raw.githubusercontent.com/Daniel-Lanchares/Traffic_flow_simulation--1st_Semester_2022--/main/Pictures_&_Figures/Def-1.png?raw=true)                                        |                                      ![](https://raw.githubusercontent.com/Daniel-Lanchares/Traffic_flow_simulation--1st_Semester_2022--/main/Pictures_&_Figures/Def-2.png?raw=true)                                       |
+| Random initial speeds are not disparate enough to generate secondary waves, but we can still see a front forming when the leading vehicle meets the last, causing a braking cascade. It quickly converges to a common speed. | Multiple fronts form depending on the initial speeds with the main one being much more marked, becoming clearly visible with the naked eye on the top graph. Secondary waves also form, albeit with a much smaller spread. |
 ## City flow simulation
 While the ODE model is a very computationally inexpensive way to approach this problem it cannot be easily adapted 
 to more complex situations such as the inner streets of a city. As such a much simpler way is to promote the 
@@ -88,8 +98,9 @@ implement Bézier curves as a series of small straight roads _et voilà!_. Thoug
 refresh rate of the renderer or will end up with blinking cars. By adjusting their handles we can create any road we 
 might think of.
 
-On the vehicles themselves, we can customize their size, colour and stats (speed, acceleration, deceleration...)... 
-TO BE CONTINUED
+On the vehicles themselves, we can customize their size, colour and stats (speed, acceleration, deceleration...) as 
+well as their route. Trough stochastic generation methods we can customize traffic density and type on a 
+lane-by-lane basis.
 
 ![intersection simulator](https://raw.githubusercontent.com/Daniel-Lanchares/Traffic_flow_simulation--1st_Semester_2022--/main/Pictures_&_Figures/Intersection.png?raw=true)
 
